@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { BsBagCheckFill } from 'react-icons/bs';
 
 import { useStateContext } from '../context/StateContext';
 import { runConfetti } from '../lib/utils';
 
-const successPay = () => {
+const SuccessPay = () => {  // Renamed to SuccessPay
     const { setCartItems, setTotalPrice, setTotalQty } = useStateContext();
 
     useEffect(() => {
@@ -14,12 +14,12 @@ const successPay = () => {
         setTotalPrice(0);
         setTotalQty(0);
         runConfetti();
-    }, []);
+    }, [setCartItems, setTotalPrice, setTotalQty]);
 
     return (
         <div className='success'>
             <p className='icon'>
-                <BsBagCheckFill size={80} />
+                <BsBagCheckFill size={80} aria-label="Order success" />
             </p>
             <h1>Thank you for your order!</h1>
             <p>Check your email inbox for the receipt</p>
@@ -30,12 +30,13 @@ const successPay = () => {
                 </a>
             </p>
             <Link href="/">
-                <button className='btn' type="button" width="300px">
+                <button className='btn' type="button">
                     Continue Shopping
                 </button>
             </Link>
         </div>
-    )
+    );
 }
 
-export default successPay
+export default SuccessPay;
+
