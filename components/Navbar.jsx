@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { CgShoppingCart } from 'react-icons/cg'
 import { CiSearch } from 'react-icons/ci' // Added CiSearch import
-import logo from '../src/assets/Logo.png'
+import logo from '../src/assets/logo.png'
 import Link from 'next/link'
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri'
 import { useStateContext } from '../context/StateContext'
