@@ -11,7 +11,7 @@
   "dependencies": {
     "@mui/material": "^6.1.8",
     "@next/font": "13.1.0",
-    "@sanity/client": "^3.4.1",
+    "@sanity/client": "^6.22.5",
     "@sanity/image-url": "^1.0.1",
     "@stripe/stripe-js": "^1.46.0",
     "canvas-confetti": "^1.6.0",
