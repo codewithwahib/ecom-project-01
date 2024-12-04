@@ -1,121 +1,78 @@
-import React, { useState, useCallback } from 'react';
-import Image from 'next/image';
-import { CgShoppingCart } from 'react-icons/cg';
-import { CiSearch } from 'react-icons/ci';
-import logo from '../src/assets/logo.png';
-import Link from 'next/link';
-import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
-import { useRouter } from 'next/router';
+import React, { useState } from 'react'
+import Image from 'next/image'
+import {CiSearch} from 'react-icons/ci'
+import {CgShoppingCart} from 'react-icons/cg'
+import logo from '../src/assets/Logo.png'
+import Link from 'next/link'
+import {RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 import { useStateContext } from '../context/StateContext';
 
-const Navbar = () => {
-  const { showCart, setShowCart, totalQty } = useStateContext();
+const Navbar = ({Searchproducts}) => {
+  const {showCart, setShowCart, totalQty} = useStateContext();
   const [toggleMenu, setToggleMenu] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const router = useRouter();
-
-  const handleSearchChange = useCallback((event) => {
-    setSearchTerm(event.target.value);
-  }, []);
-
-  const handleSearchSubmit = () => {
-    if (searchTerm.trim()) {
-      router.push(`/search?query=${encodeURIComponent(searchTerm)}`);
-    }
-  };
+  // const [searchTerm, setSearchTerm] = useState('')
 
   return (
-    <nav className="navbar">
-      {/* Logo */}
-      <Link href="/" aria-label="Home">
-        <Image src={logo} width={140} height={25} alt="logo" priority />
+    <nav>
+      <Link href='/'>
+        <Image src={logo} width={140} height={25} alt='logo' />
       </Link>
-
-      {/* Navigation Links */}
-      <ul className="nav-links">
-        <Link href="/male"><li>Male</li></Link>
-        <Link href="/female"><li>Female</li></Link>
-        <Link href="/kids"><li>Kids</li></Link>
-        <Link href="/products"><li>All Products</li></Link>
+      <ul className='nav-links'>
+        <Link href='/female'><li>Female</li></Link>
+        <Link href='/male'><li>Male</li></Link>
+        <Link href='/kids'><li>Kids</li></Link>
+        <Link href='/products'><li>All Products</li></Link>
       </ul>
 
-      {/* Search Bar */}
-      <div className="search-bar">
-        <CiSearch />
-        <input
-          type="text"
-          placeholder="What are you looking for?"
-          value={searchTerm}
-          onChange={handleSearchChange}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter') handleSearchSubmit();
-          }}
-          aria-label="Search products"
-        />
-      </div>
+        <div className='search-bar'>
+          <CiSearch />
+          <input 
+            type='text' 
+            placeholder='What you looking for'/>
+        </div>
+        {/* onChange={(event) => {
+              setSearchTerm(event.target.value);
+          }} */}
 
-      {/* Cart Button */}
-      {showCart ? (
-        <Link href="/cart">
-          <button className="cart" onClick={() => setShowCart(false)} aria-label="Go to cart">
-            <CgShoppingCart size={22} />
-            <span className="cart-item-qty">{totalQty}</span>
-          </button>
-        </Link>
-      ) : (
-        <button className="cart" onClick={() => setShowCart(true)} aria-label="Open cart">
+      {showCart ?
+      <Link href='/cart'>
+        <button className='cart' onClick={() => setShowCart(false)}>   
           <CgShoppingCart size={22} />
-          <span className="cart-item-qty">{totalQty}</span>
+          <span className='cart-item-qty'>{totalQty}</span> 
         </button>
-      )}
+      </Link> 
+      : 
+      <button className='cart' onClick={() => setShowCart(true)}> 
+        <CgShoppingCart size={22} />
+        <span className='cart-item-qty'>{totalQty}</span>
+      </button> 
+      }
 
-      {/* Small Screen Navigation */}
-      <div className="navbar-smallscreen">
-        <RiMenu3Line
-          color="black"
-          fontSize={27}
-          aria-label="Open menu"
-          onClick={() => setToggleMenu(true)}
-        />
+      <div className='navbar-smallscreen'>
+        <RiMenu3Line color='black' fontSize={27} onClick={() => setToggleMenu(true)} />
         {toggleMenu && (
-          <div className="navbar-smallscreen_overlay">
-            <Link href="/" aria-label="Home">
-              <Image
-                className="logo-small"
-                src={logo}
-                width={140}
-                height={25}
-                alt="logo"
-              />
+          <div className='navbar-smallscreen_overlay'>
+            <Link href='/'>
+              <Image className='logo-small' src={logo} width={140} height={25} alt='logo' />
             </Link>
-            <RiCloseLine
-              color="black"
-              fontSize={27}
-              className="close_icon"
-              aria-label="Close menu"
-              onClick={() => setToggleMenu(false)}
-            />
-            <ul className="navbar-smallscreen_links" role="menu">
-              <Link href="/cart">
-                <button
-                  className="cart-small-screen"
-                  onClick={() => setShowCart(false)}
-                  aria-label="Go to cart"
-                >
-                  <CgShoppingCart size={22} />
-                  <span className="cart-item-qty">{totalQty}</span>
-                </button>
-              </Link>
-              <Link href="/female"><li>Female</li></Link>
-              <Link href="/male"><li>Male</li></Link>
-              <Link href="/kids"><li>Kids</li></Link>
-              <Link href="/products"><li>All Products</li></Link>
+            <RiCloseLine  color='black' fontSize={27} className='close_icon' onClick={() => setToggleMenu(false)} />
+            <ul className='navbar-smallscreen_links'>
+              <Link href='/cart'>
+                  <button className='cart-small-screen' onClick={() => setShowCart(false)}>   
+                    <CgShoppingCart size={22} />
+                    <span className='cart-item-qty'>{totalQty}</span> 
+                  </button>
+              </Link> 
+              <Link href='/female'><li>Female</li></Link>
+              <Link href='/male'><li>Male</li></Link>
+              <Link href='/kids'><li>Kids</li></Link>
+              <Link href='/products'><li>All Products</li></Link>
             </ul>
           </div>
         )}
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

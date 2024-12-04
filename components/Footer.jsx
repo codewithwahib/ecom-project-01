@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import logo from '../src/assets/logo.png'
+import logo from '../src/assets/Logo.png'
 import {GrFacebookOption, GrTwitter, GrLinkedinOption} from 'react-icons/gr'
 
 const Footer = () => {
@@ -47,9 +47,9 @@ const Footer = () => {
       </div>
 
       <div className='copyright'>
-        <p>Copyright © 2024 Wahibhive</p>
+        <p>Copyright © 2024 Wahibhive </p>
         <p>Design by. <span>Muhammad Wahib Jaffer</span></p>
-        <p>Code by. <span>codewithwahib</span></p>
+        <p>Code by. <span>codewithwahib </span></p>
       </div>
     </footer>
   )

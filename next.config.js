@@ -1,10 +1,6 @@
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    forceSwcTransforms: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-};
+  reactStrictMode: true,
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

@@ -1281,6 +1281,3 @@ footer p, footer li {
     width: 280px;
   }
 }
-.some-class {
-  justify-content: flex-end; /* Use flex-end instead of end */
-}
